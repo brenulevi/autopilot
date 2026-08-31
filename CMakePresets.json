@@ -1,0 +1,83 @@
+{
+    "version": 3,
+
+    "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            }
+        },
+
+        {
+            "name": "simulation-base",
+            "hidden": true,
+            "inherits": "base",
+            "cacheVariables": {
+                "HELIUS_TARGET": "SIMULATION"
+            }
+        },
+
+        {
+            "name": "jsbsim-debug",
+            "displayName": "JSBSim Debug",
+            "inherits": "simulation-base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "HELIUS_SIMULATION_TARGET": "JSBSIM"
+            }
+        },
+
+        {
+            "name": "jsbsim-release",
+            "displayName": "JSBSim Release",
+            "inherits": "simulation-base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "HELIUS_SIMULATION_TARGET": "JSBSIM"
+            }
+        },
+
+        {
+            "name": "stm32-debug",
+            "displayName": "STM32 Debug",
+            "inherits": "base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "HELIUS_TARGET": "STM32"
+            }
+        },
+
+        {
+            "name": "stm32-release",
+            "displayName": "STM32 Release",
+            "inherits": "base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "HELIUS_TARGET": "STM32"
+            }
+        }
+    ],
+
+    "buildPresets": [
+        {
+            "name": "jsbsim-debug",
+            "configurePreset": "jsbsim-debug"
+        },
+        {
+            "name": "jsbsim-release",
+            "configurePreset": "jsbsim-release"
+        },
+        {
+            "name": "stm32-debug",
+            "configurePreset": "stm32-debug"
+        },
+        {
+            "name": "stm32-release",
+            "configurePreset": "stm32-release"
+        }
+    ]
+}
