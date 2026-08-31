@@ -1,5 +1,23 @@
 #pragma once
 
+struct SimulationScenario
+{
+    std::string aircraft;
+
+    double dt_s;
+
+    double altitude_m;
+    double airspeed_m_s;
+
+    double roll_rad;
+    double pitch_rad;
+    double heading_rad;
+
+    double flight_path_angle_rad;
+
+    bool trim;
+};
+
 struct SimulationState
 {
     double roll_rad;
@@ -27,7 +45,7 @@ class SimulationAdapter
 public:
     virtual ~SimulationAdapter() = default;
 
-    virtual bool initialize() = 0;
+    virtual bool initialize(const SimulationScenario& scenario) = 0;
 
     virtual SimulationState getState() = 0;
 
@@ -38,5 +56,8 @@ public:
     virtual bool step() = 0;
 
     virtual double getTime() const = 0;
-    virtual double getDt() const = 0;
+    virtual SimulationActuators getTrim() const = 0;
+
+protected:
+    SimulationActuators trim_{};
 };

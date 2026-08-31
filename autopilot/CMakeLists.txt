@@ -1,5 +1,8 @@
 add_library(helius_autopilot STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/src/autopilot.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/control/pid.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/control/roll_controller.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/control/pitch_controller.c
 )
 
 add_library(helius_autopilot::helius_autopilot ALIAS helius_autopilot)

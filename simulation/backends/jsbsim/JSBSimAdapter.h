@@ -15,7 +15,7 @@ public:
     JSBSimAdapter();
     ~JSBSimAdapter() override;
 
-    bool initialize() override;
+    bool initialize(const SimulationScenario& scenario) override;
 
     SimulationState getState() override;
 
@@ -26,9 +26,8 @@ public:
     bool step() override;
 
     double getTime() const override;
-    double getDt() const override;
+    SimulationActuators getTrim() const override;
 
 private:
     std::unique_ptr<JSBSim::FGFDMExec> fdm_;
-    double dt_ = 0.01;
 };
