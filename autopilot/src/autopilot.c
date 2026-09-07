@@ -4,11 +4,6 @@
 
 void helius_autopilot_init(helius_autopilot_t *autopilot, const helius_autopilot_config_t *config)
 {
-    if(autopilot == NULL || config == NULL)
-    {
-        return;
-    }
-
     helius_roll_controller_init(&autopilot->roll_controller, &config->roll_pid_config);
     helius_pitch_controller_init(&autopilot->pitch_controller, &config->pitch_pid_config);
 }
